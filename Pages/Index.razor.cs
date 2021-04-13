@@ -66,12 +66,13 @@ namespace BlazorApp.Pages
                 .Aggregate((total, price) => total + price) * MainItem.Quantity;
         }
 
-        void AddItem(Enums.Modules module)
+        public Task AddItem(Enums.Modules module)
         {
             var newItem = new Item(module: module, canEditQuantity: false, showQuantity: false, quantity: 0, included: false);
             items.Add(newItem);
             AvailableModules = GetAvailabeModules();
             CalculatePrice();
+            return Task.CompletedTask;
 
         }
     }
