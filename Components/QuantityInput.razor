@@ -1,0 +1,29 @@
+@using Models
+<div class="form-group">
+    <label>Quantity</label>
+    <input type="number" class="form-control" step="50" value=@Item.Quantity @onchange="SetQuantity" />
+</div>
+
+@code
+{
+    [Parameter]
+    public Item Item { get; set; }
+    [Parameter]
+    public EventCallback<Item> ItemChanged { get; set; }
+    [Parameter]
+    public EventCallback AskForRecalculate { get; set; }
+
+    private async Task SetQuantity(ChangeEventArgs e)
+    {
+        if (e.Value != null)
+        {
+            var parsed = int.TryParse(e.Value.ToString(), out var newQuantity);
+            if (parsed)
+            {
+                Item.Quantity = newQuantity;
+                await AskForRecalculate.InvokeAsync();
+                await ItemChanged.InvokeAsync(Item);
+            }
+        }
+    }
+}

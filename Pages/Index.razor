@@ -1,0 +1,50 @@
+@page "/"
+@using BlazorApp.Components
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="alert alert-secondary" role="alert">
+                <h5 class="btn-align display-5 d-inline-block">Add new Modules</h5>
+                <button class="btn btn-success float-right">
+                    <span class="oi oi-plus"></span> Add
+                </button>
+            </div>
+            @if (items == null)
+            {
+                <div>Loading...</div>
+            }
+            else
+            {
+                <div class="card-deck">
+                    @for (var i = 0; i < items.Count; i++)
+                    {
+                        var item = items[i];
+                        <ItemCard Item="item" OnRemoveItem="() => RemoveItem(item)" />
+                        if ((i + 1) % 3 == 0)
+                        {
+                            <div class="w-100" />
+
+                        }
+                    }
+                </div>
+            }
+        </div>
+        <div class="col-3">
+            <fieldset>
+                <div form-group>
+                    <label for="expirationDate">Expiration Date</label>
+                    <input id="expirationDate" @bind-value="expirationDate" type="date" class="form-control">
+                </div>
+                <div form-group>
+                    <label for="activationDate">Activation Date</label>
+                    <input id="activationDate" @bind-value="activationDate" type="date" class="form-control">
+                </div>
+                <QuantityInput @bind-Item="MainItem" AskForRecalculate="(() => CalculatePrice())" />
+                <ModuleSelect Items=items AddNewItem=AddItem AvailableModules=AvailableModules />
+                <p>@TotalCost</p>
+            </fieldset>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="form-group mb-3">
+    <label>Select a Module to add</label>
+    <select class="custom-select form-control" value=@SelectedModule @onchange=SetModule>
+        <option value="-1" selected disabled>Please Selecte a Module</option>
+        @foreach (var module in AvailableModules)
+        {
+            <option value="@module.ToString()">@module.ToString()</option>
+        }
+    </select>
+    <div class="row">
+        <div class="col">
+            <button type="button" class="btn btn-primary" @onclick="SubmitModuleChange">Add</button>
+        </div>
+    </div>
+</div>

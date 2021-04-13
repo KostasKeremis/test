@@ -1,0 +1,17 @@
+<div class="card mb-3" style="cursor: @(Item.Included ? "not-allowed" : "pointer")">
+    <div class="card-header">
+        @Item.Module.ToString()
+        @if(!Item.Included)
+        {
+            <div class="float-right">
+                <button type="button" class="close" @onclick="OnRemoveItem">x</button>
+            </div>
+        }
+    </div>
+    <div class="card-body">
+            @if (Item.ShowQuantity)
+            {
+                <p class="card-subtitle mb-2 text-muted">Quantity: @Item.Quantity</p>
+            }
+    </div>
+</div>
