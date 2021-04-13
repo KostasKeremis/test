@@ -1,7 +1,7 @@
 @using Models
 <div class="form-group">
     <label>Quantity</label>
-    <input type="number" class="form-control" step="50" value=@Item.Quantity @onchange="SetQuantity" />
+    <input type="number" class="form-control" step="50" value=@Item.Quantity @oninput="SetQuantity" />
 </div>
 
 @code
