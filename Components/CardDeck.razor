@@ -27,4 +27,11 @@
     {
         await RemoveItem.InvokeAsync(item);
     }
+
+    protected override void OnInitialized()
+    {
+        Items.ForEach(it => it.IsVisible = true);
+        base.OnInitialized();
+    }
+
 }

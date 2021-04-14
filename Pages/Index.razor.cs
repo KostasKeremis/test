@@ -45,6 +45,7 @@ namespace BlazorApp.Pages
 
             PriceList = new PriceList(_priceListItems);
             AvailableModules = GetAvailabeModules();
+            await CalculatePrice();
 
             await Task.Delay(2000);
 
@@ -58,22 +59,27 @@ namespace BlazorApp.Pages
             return Task.CompletedTask;
         }
 
-        void CalculatePrice()
+        public async Task CalculatePrice()
         {
             TotalCost = PriceList.Items
                 .Where(priceItem => items.Select(transactionItem => transactionItem.Module)
                 .Contains(priceItem.Module)).Select(priceItem => priceItem.Price)
                 .Aggregate((total, price) => total + price) * MainItem.Quantity;
+            await Task.CompletedTask;
         }
 
-        public Task AddItem(Enums.Modules module)
+        public async Task AddItem(Enums.Modules module)
         {
             var newItem = new Item(module: module, canEditQuantity: false, showQuantity: false, quantity: 0, included: false);
             items.Add(newItem);
             AvailableModules = GetAvailabeModules();
-            CalculatePrice();
-            return Task.CompletedTask;
+            await CalculatePrice();
+            newItem.IsVisible = true;
+            await Task.CompletedTask;
 
         }
+
+
+
     }
 }

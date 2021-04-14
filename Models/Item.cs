@@ -19,6 +19,7 @@ namespace BlazorApp.Models
         public int Quantity { get; set; }
         public bool Included { get; set; }
         public bool CanEditQuantity { get; set; }
+        public bool IsVisible { get; set; }
 
     }
 }
