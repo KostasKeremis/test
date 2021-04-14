@@ -1,0 +1,42 @@
+<p>TabControl</p>
+
+@foreach (TabPage page in Pages)
+{
+    <button class="btn @GetButtonClass(page)" @onclick=@(() => ActivatePage(page))>
+        @(page.Text)
+    </button>
+}
+
+
+<CascadingValue Value="this">
+    @ChildContent
+</CascadingValue>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    public List<TabPage> Pages { get; set; } = new List<TabPage>();
+
+    public TabPage ActivePage { get; set; }
+
+    public void ActivatePage(TabPage page)
+    {
+        ActivePage = page;
+    }
+
+    public string GetButtonClass(TabPage page)
+    {
+        return page == ActivePage ? "btn-success" : "btn-secondary";
+    }
+
+    internal protected void AddPage(TabPage page)
+    {
+        Pages.Add(page);
+        if (Pages.Count == 1)
+        {
+            ActivePage = page;
+        }
+        StateHasChanged();
+    }
+}

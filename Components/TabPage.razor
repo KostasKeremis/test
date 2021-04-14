@@ -1,0 +1,22 @@
+@if (this == Parent.ActivePage)
+{
+    @ChildContent
+}
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [CascadingParameter]
+    private TabControl Parent { get; set; }
+
+    [Parameter]
+    public string Text { get; set; }
+
+    protected override void OnInitialized()
+    {
+
+        base.OnInitialized();
+        Parent.AddPage(this);
+    }
+}

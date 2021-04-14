@@ -1,0 +1,32 @@
+@using System.Globalization
+<div form-group>
+    <label for="@Id">@Label</label>
+    <input id="@Id" value=@(Date.ToString("yyyy-MM-dd")) @onchange=OnDateChanged type="date" class="form-control">
+</div>
+
+
+@code {
+    [Parameter]
+    public DateTime Date { get; set; } = DateTime.Today;
+
+    [Parameter]
+    public EventCallback<DateTime> DateChanged { get; set; }
+
+    [Parameter]
+    public string Id { get; set; } = "";
+
+    [Parameter]
+    public string Label { get; set; } = "";
+
+
+    public async Task OnDateChanged(ChangeEventArgs e)
+    {
+        if (DateTime.TryParse(e.Value?.ToString() ?? "", out DateTime newDate))
+        {
+            Date = newDate;
+            await DateChanged.InvokeAsync(Date);
+        }
+    }
+
+
+}

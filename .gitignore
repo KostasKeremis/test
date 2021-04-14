@@ -1,2 +1,3 @@
 /obj
-/bin/*
+/bin
+/net5.0
