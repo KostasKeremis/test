@@ -1,0 +1,52 @@
+<form class="@(Visible ? "" : "form-hidden")" @onsubmit="OnSubmit">
+    <div class="input-group mb-3 mt-3">
+        <input value=@Query @oninput=HandleQueryChanged type="text" class="form-control" placeholder="Domain">
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-primary" @onclick="OnSubmit">
+                @if (IsSearching)
+                {
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    <span>Searching</span>
+                }
+                else
+                {
+                    <span>Search</span>
+                }
+
+            </button>
+
+        </div>
+    </div>
+</form>
+
+
+@code {
+    [Parameter]
+    public string Query { get; set; }
+
+    [Parameter]
+    public EventCallback<string> QueryChanged { get; set; }
+
+    [Parameter]
+    public bool Visible { get; set; }
+
+    [Parameter]
+    public bool IsSearching { get; set; }
+
+    [Parameter]
+    public EventCallback OnSubmit { get; set; }
+
+    public async Task HandleQueryChanged(ChangeEventArgs e)
+    {
+        Query = e.Value.ToString() ?? "";
+        await QueryChanged.InvokeAsync(Query);
+    }
+
+
+
+
+
+
+
+
+}

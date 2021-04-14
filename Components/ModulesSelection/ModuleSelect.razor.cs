@@ -7,7 +7,7 @@ using System.Linq;
 using BlazorApp.Models;
 using System.Threading.Tasks;
 
-namespace BlazorApp.Components
+namespace BlazorApp.Components.ModulesSelection
 {
     public partial class ModuleSelect
     {

@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using BlazorApp.Models;
 using System.Threading.Tasks;
 using BlazorApp.Enums;
+using Microsoft.AspNetCore.Components;
 
 namespace BlazorApp.Pages
 {
-    public partial class Index
+    public partial class Index : ComponentBase
     {
         List<Item> items { get; set; } = new List<Item>();
         Item MainItem { get; set; }
@@ -19,7 +20,12 @@ namespace BlazorApp.Pages
         List<PriceListItem> _priceListItems = new List<PriceListItem>();
         List<Modules> AvailableModules = new List<Modules>();
         List<Modules> AllModules { get; set; } = Enum.GetValues(typeof(Modules)).Cast<Modules>().ToList();
+        public bool IsSearching { get; set; }
+        public bool IsMainFormVisible { get; set; }
 
+        public string Query { get; set; } = string.Empty;
+
+        public bool IsSearchFormVisible { get; set; }
 
         private List<Modules> GetAvailabeModules()
         {
@@ -45,18 +51,20 @@ namespace BlazorApp.Pages
 
             PriceList = new PriceList(_priceListItems);
             AvailableModules = GetAvailabeModules();
+            IsSearchFormVisible = true;
+
             await CalculatePrice();
 
             await Task.Delay(2000);
 
         }
 
-        public Task RemoveItem(Item item)
+        public async Task RemoveItem(Item item)
         {
             items.RemoveAll(it => it.Module == item.Module);
             AvailableModules = GetAvailabeModules();
-            CalculatePrice();
-            return Task.CompletedTask;
+            await CalculatePrice();
+            await Task.CompletedTask;
         }
 
         public async Task CalculatePrice()
@@ -76,6 +84,17 @@ namespace BlazorApp.Pages
             await CalculatePrice();
             newItem.IsVisible = true;
             await Task.CompletedTask;
+
+        }
+
+        public async Task SubmitSearch()
+        {
+            IsSearching = true;
+            await Task.Delay(2000); // Make the API call
+            // Success
+            IsMainFormVisible = true;
+            IsSearchFormVisible = false;
+            IsSearching = false;
 
         }
 

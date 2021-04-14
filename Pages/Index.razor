@@ -1,37 +1,40 @@
 @page "/"
-@using BlazorApp.Components
+@using BlazorApp.Components.CartItemsProduct
+@using BlazorApp.Components.DateComponents
+@using BlazorApp.Components.MainQuantityInput
+@using BlazorApp.Components.ModulesSelection
+@using BlazorApp.Components.Search
 
 
 
 <div class="container">
-    <div class="row">
-        <div class="col">
-            <div class="alert alert-secondary" role="alert">
-                <h5 class="btn-align display-5 d-inline-block">Add new Modules</h5>
-                <button class="btn btn-success float-right">
-                    <span class="oi oi-plus"></span> Add
-                </button>
+    <div class="form-wrapper">
+        <div class="row">
+            <div class="col">
+                <Searchbox @bind-Query=@Query IsSearching=IsSearching OnSubmit=SubmitSearch
+                    Visible=@IsSearchFormVisible />
             </div>
-
-            @if (items == null)
-            {
-                <div>Loading...</div>
-            }
-            else
-            {
-                <CardDeck Items=items RemoveItem=RemoveItem />
-            }
-        </div>
-        <div class="col-3">
-            <DateForm>
-                <DatePicker @bind-Date="expirationDate" Id="expirationDate" Label="Expiration Date" />
-                <DatePicker @bind-Date="activationDate" Id="activationDate" Label="Activation Date" />
-            </DateForm>
-            <fieldset>
-                <QuantityInput @bind-Item="MainItem" AskForRecalculate="( () => CalculatePrice())" />
-                <ModuleSelect Items=items AddNewItem=AddItem AvailableModules=AvailableModules />
-                <p>@TotalCost</p>
-            </fieldset>
         </div>
     </div>
+    @if (IsMainFormVisible)
+    {
+        <div class="row">
+            <div class="col">
+
+                <CardDeck Items=items RemoveItem=RemoveItem />
+            </div>
+            <div class="col-3">
+                <DateForm>
+                    <DatePicker @bind-Date="expirationDate" Id="expirationDate" Label="Expiration Date" />
+                    <DatePicker @bind-Date="activationDate" Id="activationDate" Label="Activation Date" />
+                </DateForm>
+                <fieldset>
+                    <QuantityInput @bind-Item="MainItem" AskForRecalculate="( () => CalculatePrice())" />
+                    <ModuleSelect Items=items AddNewItem=AddItem AvailableModules=AvailableModules />
+                    <p>@TotalCost</p>
+                </fieldset>
+            </div>
+        </div>
+    }
+
 </div>
