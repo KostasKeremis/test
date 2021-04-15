@@ -78,7 +78,7 @@ namespace BlazorApp.Pages
 
         public async Task AddItem(Enums.Modules module)
         {
-            var newItem = new Item(module: module, canEditQuantity: false, showQuantity: false, quantity: 0, included: false);
+            var newItem = new Item(module: module, canEditQuantity: false, showQuantity: true, quantity: 0, included: false);
             items.Add(newItem);
             AvailableModules = GetAvailabeModules();
             await CalculatePrice();
@@ -98,7 +98,18 @@ namespace BlazorApp.Pages
 
         }
 
+        public async Task SubReturn()
+        {
+            IsSearching = true;
+            await Task.Delay(2000); // Make the API call
+                                    // Success
+            IsMainFormVisible = false;
+            IsSearchFormVisible = true;
+            IsSearching = false;
+            Query = string.Empty;
+            
 
+        }
 
     }
 }

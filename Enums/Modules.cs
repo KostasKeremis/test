@@ -15,6 +15,7 @@ namespace BlazorApp.Enums
         Notification,
         Email,
         Storage,
+        Something,
 
     }
 }

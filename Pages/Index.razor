@@ -4,6 +4,7 @@
 @using BlazorApp.Components.MainQuantityInput
 @using BlazorApp.Components.ModulesSelection
 @using BlazorApp.Components.Search
+@using BlazorApp.Components.NewComp
 
 
 
@@ -31,6 +32,7 @@
                 <fieldset>
                     <QuantityInput @bind-Item="MainItem" AskForRecalculate="( () => CalculatePrice())" />
                     <ModuleSelect Items=items AddNewItem=AddItem AvailableModules=AvailableModules />
+                    <NewTest OnSubmit="SubReturn" />
                     <p>@TotalCost</p>
                 </fieldset>
             </div>

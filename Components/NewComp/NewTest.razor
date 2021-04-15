@@ -1,0 +1,21 @@
+﻿@using System;
+@using System.Linq;
+@using System.Collections.Generic;
+@using BlazorApp.Models;
+@using System.Threading.Tasks;
+@using BlazorApp.Enums;
+@using Microsoft.AspNetCore.Components;
+
+
+<button type="button" class="btn btn-primary" @onclick="OnSubmit">Return</button>
+
+
+
+@code {
+   
+
+    [Parameter]
+    public EventCallback OnSubmit { get; set; }
+
+
+}
