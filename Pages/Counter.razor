@@ -1,16 +1,110 @@
 @page "/counter"
+@using BlazorApp.Components.Search 
 
 <h1>Counter</h1>
 
-<p>Current count: @currentCount</p>
+<p>Current count: @CurrentCounterValue</p>
+<p> <Searchbox @bind-Query=@Fname @bind-Query2=@Sname IsSearching=IsSearching OnSubmit=SubmitSearch
+                           Visible=@IsSearchFormVisible/></p>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<button class="btn btn-primary" @onclick=@UpdateCurrentCounterValue>Click me</button>
+<button class="btn btn-outline-danger" @onclick="DecCount">Dont click me</button>
+<button class="btn btn-outline-danger" @onclick=@SubmitName>Try</button>
+<div style="color:red" >
+    <p>Welcome kurie :@Fname  @Sname</p>
+    
+</div>
+
 
 @code {
-    private int currentCount = 0;
 
-    private void IncrementCount()
+
+    [Parameter]
+
+
+    public bool IsSearching { get; set; }
+    public bool IsSearchFormVisible { get; set; } = true;
+    public bool IsMainFormVisible { get; set; }
+    public bool LogVisible { get; set; } = false;
+
+
+    public async Task SubmitSearch()
     {
-        currentCount++;
+        IsSearching = true;
+        await Task.Delay(2000); // Make the API call
+                                // Success
+        IsMainFormVisible = true;
+        IsSearchFormVisible = false;
+        IsSearching = false;
+
+    }
+    public async Task SubmitName()
+    {
+        LogVisible = false;
+
+    }
+
+
+    [Parameter]
+    public EventCallback OnSubmit { get; set; }
+
+
+
+
+
+
+
+    [Parameter]
+    public int CurrentCounterValue { get; set; }
+
+
+
+    [Parameter]
+    public string Fname { get; set; } = string.Empty;
+
+    [Parameter]
+    public string Sname { get; set; } = string.Empty;
+
+
+
+    private void DecCount()
+    {
+        CurrentCounterValue--;
+        if (CurrentCounterValue == -10)
+        {
+            CurrentCounterValue = 0;
+
+        }
+    }
+
+
+    [Parameter]
+    public EventCallback<int> CurrentCounterValueChanged { get; set; }
+
+    [Parameter]
+    public EventCallback<string> FnameChanged { get; set; }
+
+    [Parameter]
+    public EventCallback<string> SnameChanged { get; set; }
+
+    async Task UpdateSname()
+    {
+
+        await SnameChanged.InvokeAsync(Sname);
+    }
+
+
+    async Task UpdateFname()
+    {
+
+        await FnameChanged.InvokeAsync(Fname);
+    }
+
+
+
+    async Task UpdateCurrentCounterValue()
+    {
+        CurrentCounterValue++;
+        await CurrentCounterValueChanged.InvokeAsync(CurrentCounterValue);
     }
 }

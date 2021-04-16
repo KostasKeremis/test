@@ -1,0 +1,59 @@
+[33mcommit e7b71978987e103777e12f81f787c2308f2d259d[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31moorigin/master[m[33m)[m
+Author: Kostas Keremis <kkeremis@claster.com>
+Date:   Thu Apr 15 13:54:52 2021 +0300
+
+    secound commit
+
+[33mcommit ea399ca1a24a2ac8b3c8ca16a7bdaa4fc59a3d99[m
+Author: Kostas Keremis <kkeremis@claster.com>
+Date:   Thu Apr 15 13:53:31 2021 +0300
+
+    First Commit
+
+[33mcommit 66f3f298ce77d77df019d93d1973a82a611d5829[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Giorgos Tharropoulos <tharropoulos@gmail.com>
+Date:   Thu Apr 15 01:17:07 2021 +0300
+
+    Search box added with a fade out transition when the search is completed.
+
+[33mcommit 5a455c83906d1500ac393a4ba9b36ef6e253a4a6[m
+Author: Giorgos Tharropoulos <tharropoulos@gmail.com>
+Date:   Wed Apr 14 23:55:33 2021 +0300
+
+    Added fade in transition to items of the Card deck
+
+[33mcommit 0ea6f546a2542c7207e39a498337acc4ffdeb841[m
+Author: Giorgos Tharropoulos <tharropoulos@gmail.com>
+Date:   Wed Apr 14 23:14:11 2021 +0300
+
+    Containirized Card Deck and the two DatePickers in Index.razor
+
+[33mcommit d4c4019ed67a09cb68e4031874725a250e45b409[m
+Author: Giorgos Tharropoulos <tharropoulos@gmail.com>
+Date:   Tue Apr 13 23:22:09 2021 +0300
+
+    Updated .gitignore
+
+[33mcommit fa7392e154d5e9b7dda8b6a89723a23335f023a6[m
+Author: Giorgos Tharropoulos <tharropoulos@gmail.com>
+Date:   Tue Apr 13 23:21:06 2021 +0300
+
+    Updated .gitignore
+
+[33mcommit d0ff7b12c79794e35e46aa494ab40fa4dd24f342[m
+Author: Giorgos Tharropoulos <tharropoulos@gmail.com>
+Date:   Tue Apr 13 23:19:52 2021 +0300
+
+    Changed event in QuantityInput.razor from @onchange to @oninput
+
+[33mcommit 225a535054c00c01651570a2d091058f29a909e3[m
+Author: Giorgos Tharropoulos <tharropoulos@gmail.com>
+Date:   Tue Apr 13 23:05:20 2021 +0300
+
+    Changed Index
+
+[33mcommit 79eb0fde99701d054905282ddd9d8c709bf90346[m
+Author: Giorgos Tharropoulos <tharropoulos@gmail.com>
+Date:   Tue Apr 13 23:04:58 2021 +0300
+
+    Initial Commit

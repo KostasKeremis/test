@@ -8,11 +8,14 @@
 
 
 <button type="button" class="btn btn-primary" @onclick="OnSubmit">Return</button>
+<p>@Propnew</p>
 
 
 
 @code {
-    
+    [Parameter]
+    public string Propnew { get; set; }
+
 
     [Parameter]
     public EventCallback OnSubmit { get; set; }

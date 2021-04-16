@@ -12,9 +12,10 @@
     <div class="form-wrapper">
         <div class="row">
             <div class="col">
-                <Searchbox @bind-Query=@Query IsSearching=IsSearching OnSubmit=SubmitSearch
-                    Visible=@IsSearchFormVisible />
+                <Searchbox @bind-Query=@Query  @bind-Query2=@Query2 IsSearching=IsSearching OnSubmit=SubmitSearch
+                           Visible=@IsSearchFormVisible />
             </div>
+            
         </div>
     </div>
     @if (IsMainFormVisible)
@@ -29,11 +30,19 @@
                     <DatePicker @bind-Date="expirationDate" Id="expirationDate" Label="Expiration Date" />
                     <DatePicker @bind-Date="activationDate" Id="activationDate" Label="Activation Date" />
                 </DateForm>
-                <fieldset>
+                <fieldset >
+                    <Counter @bind-CurrentCounterValue=@NewValuePassed Fname=@Query Sname=@Query2 />
                     <QuantityInput @bind-Item="MainItem" AskForRecalculate="( () => CalculatePrice())" />
                     <ModuleSelect Items=items AddNewItem=AddItem AvailableModules=AvailableModules />
-                    <NewTest OnSubmit="SubReturn" />
+                    <NewTest OnSubmit="SubReturn" Propnew="ebala ena stringg " />
+
                     <p>@TotalCost</p>
+                    <li class="nav-item px-3">
+                        <NavLink class="nav-link" href="counter">
+
+                            <button> Return to Counter</button>
+                        </NavLink>
+                    </li>
                 </fieldset>
             </div>
         </div>

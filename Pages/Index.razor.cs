@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 using BlazorApp.Enums;
 using Microsoft.AspNetCore.Components;
 
+
 namespace BlazorApp.Pages
 {
     public partial class Index : ComponentBase
     {
+        
         List<Item> items { get; set; } = new List<Item>();
         Item MainItem { get; set; }
         DateTime expirationDate { get; set; } = DateTime.Today;
@@ -24,6 +26,9 @@ namespace BlazorApp.Pages
         public bool IsMainFormVisible { get; set; }
 
         public string Query { get; set; } = string.Empty;
+        public string Query2 { get; set; } = string.Empty;
+        public int NewValuePassed { get; set; } = 5;
+
 
         public bool IsSearchFormVisible { get; set; }
 
@@ -107,6 +112,15 @@ namespace BlazorApp.Pages
             IsSearchFormVisible = true;
             IsSearching = false;
             Query = string.Empty;
+            Query2 = string.Empty;
+
+
+        }
+        public async Task ChangeCounter()
+        {
+            //int number = Int32.Parse(Query);
+            await Task.Delay(2000); // Make the API call
+                                    // Success
             
 
         }
